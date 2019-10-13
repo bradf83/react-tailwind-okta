@@ -11,6 +11,7 @@
 
 ## TODO
 
-* Auth with Okta
-* Protected and unprotected route
-* Context for Auth that wraps entire application
+* Improve use of Tailwind, file a little big not sure we need everything
+* Cleanup TODOs about OKTA Pattern
+* Access or ID token?  Both?
+* Can I use TailwindCSS with node-sass?

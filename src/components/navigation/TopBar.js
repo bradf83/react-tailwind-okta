@@ -1,0 +1,52 @@
+import React, {useContext, useState} from 'react';
+import {AuthContext} from "../authentication/Auth";
+import TopBarLink from "./TopBarLink";
+import Hamburger from "./Hamburger";
+
+const TopBar = () => {
+    const [hidden, setHidden] = useState(true);
+    const auth = useContext(AuthContext);
+
+    const userAuthenticated = auth.user !== null && auth.user !== undefined;
+    const smallNavHidden = hidden ? 'hidden' : '';
+    return (
+        <section>
+            <nav className="flex items-center justify-between flex-wrap bg-black p-3">
+                {/*Brand*/}
+                <div className="flex items-center flex-shrink-0 text-white mr-6">
+                    <span className="font-semibold text-xl tracking-tight">React Tailwind</span>
+                </div>
+
+                {/*Hamburger*/}
+                <div className="block sm:hidden">
+                    <Hamburger clickHandler={() => setHidden(current => !current)} />
+                </div>
+
+                {/*Menu Content*/}
+                <div className={`w-full block flex-grow sm:flex sm:items-center sm:w-auto ${smallNavHidden}`}>
+                    {/*Left Side Grows*/}
+                    <div className="text-sm sm:flex-grow">
+                        <TopBarLink to="/" label="Home"/>
+                        <TopBarLink to="/public" label="Public"/>
+                        <TopBarLink to="/secure" label="Secure"/>
+                        {/*TODO: Less than ideal here for now.*/}
+                        {userAuthenticated && (
+                            <TopBarLink to="/logout" label="Log Out"/>
+                        )}
+                    </div>
+                    {/*Right Side only takes space it needs*/}
+                    <div>
+                        {userAuthenticated && (
+                            <span className="text-white">{auth.user.name}</span>
+                        )}
+                        {!userAuthenticated && (
+                            <TopBarLink to="/secure" label="Sign In"/>
+                        )}
+                    </div>
+                </div>
+            </nav>
+        </section>
+    )
+};
+
+export default TopBar;
