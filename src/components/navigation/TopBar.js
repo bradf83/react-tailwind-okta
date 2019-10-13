@@ -2,6 +2,8 @@ import React, {useContext, useState} from 'react';
 import {AuthContext} from "../authentication/Auth";
 import TopBarLink from "./TopBarLink";
 import Hamburger from "./Hamburger";
+import {NavLink} from "react-router-dom";
+import Dropdown from "./Dropdown";
 
 const TopBar = () => {
     const [hidden, setHidden] = useState(true);
@@ -29,15 +31,13 @@ const TopBar = () => {
                         <TopBarLink to="/" exact={true} label="Home"/>
                         <TopBarLink to="/public" exact={true} label="Public"/>
                         <TopBarLink to="/secure" exact={true} label="Secure"/>
-                        {/*TODO: Less than ideal here for now.*/}
-                        {userAuthenticated && (
-                            <TopBarLink to="/logout" label="Log Out"/>
-                        )}
                     </div>
                     {/*Right Side only takes space it needs*/}
                     <div>
                         {userAuthenticated && (
-                            <span className="text-white">{auth.user.name}</span>
+                            <Dropdown userName={auth.user.name}>
+                                <NavLink to="/logout" className="block px-4 py-2 text-gray-800 hover:bg-teal-700 hover:text-white">Sign Out</NavLink>
+                            </Dropdown>
                         )}
                         {!userAuthenticated && (
                             <TopBarLink to="/secure" label="Sign In"/>
@@ -50,3 +50,5 @@ const TopBar = () => {
 };
 
 export default TopBar;
+
+
