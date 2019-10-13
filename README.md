@@ -8,3 +8,9 @@
 ## Gotcha's So Far
 
 * When setting up TailwindCSS, could not name the `tail.js` file as `tailwind.js` there is a bug with that name on windows.
+
+## TODO
+
+* Auth with Okta
+* Protected and unprotected route
+* Context for Auth that wraps entire application

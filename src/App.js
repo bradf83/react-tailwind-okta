@@ -2,15 +2,32 @@ import React, {useState} from 'react';
 
 function App() {
     return (
-        <>
-          <NavBar/>
-        </>
+        <Navigation/>
     );
 }
 
 export default App;
 
-const NavBar = () => {
+// Holds the Navigation components, may want a side menu in the future.
+const Navigation = () => {
+    return (
+        <>
+            <TopNavBar/>
+        </>
+    );
+};
+
+// TODO: Not currently used
+const SideNavBar = ({showSideMenu}) => {
+    const display = showSideMenu ? '' : 'hidden';
+    return (
+        <div className={`fixed bg-black border-white border-dashed border-2 h-screen w-1/6 ${display}`}>
+
+        </div>
+    )
+};
+
+const TopNavBar = () => {
     const [hidden, setHidden] = useState(true);
 
     const smallNavHidden = hidden ? 'hidden' : '';
