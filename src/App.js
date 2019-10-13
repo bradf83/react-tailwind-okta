@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
+import {BrowserRouter as Router, NavLink} from "react-router-dom";
 
 function App() {
     return (
-        <Navigation/>
+        <Router>
+            <Navigation/>
+        </Router>
     );
 }
 
@@ -11,9 +14,7 @@ export default App;
 // Holds the Navigation components, may want a side menu in the future.
 const Navigation = () => {
     return (
-        <>
-            <TopNavBar/>
-        </>
+        <TopNavBar/>
     );
 };
 
@@ -48,12 +49,12 @@ const TopNavBar = () => {
                 <div className={`w-full block flex-grow sm:flex sm:items-center sm:w-auto ${smallNavHidden}`}>
                     {/*Left Side Grows*/}
                     <div className="text-sm sm:flex-grow">
-                        <MenuLink label="Home"/>
+                        <MenuLink to="/home" label="Home"/>
                     </div>
                     {/*Right Side only takes space it needs*/}
                     <div>
                         {/* TODO: Authenticated vs Not */}
-                        <MenuLink label="Sign In"/>
+                        <MenuLink to="/secure" label="Sign In"/>
                     </div>
                 </div>
             </nav>
@@ -73,12 +74,12 @@ const Hamburger = ({clickHandler}) => {
     )
 };
 
-// TODO: Change to be a <Link> from React Router
-const MenuLink = ({label}) => {
+// TODO: Active class.  Currently adding `active` but doing nothing
+//  custom component extraction in Tailwind?
+const MenuLink = ({to, exact = false, label}) => {
     return (
-        <a href="#responsive-header"
-           className="block mt-4 sm:inline-block sm:mt-0 text-white ml-2">
+        <NavLink to={to} exact={exact} className="block mt-4 sm:inline-block sm:mt-0 text-white ml-2">
             {label}
-        </a>
+        </NavLink>
     )
 };
