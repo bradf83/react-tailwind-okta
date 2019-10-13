@@ -7,7 +7,7 @@
 
 ## Gotcha's So Far
 
-* When setting up TailwindCSS, could not name the `tail.js` file as `tailwind.js` there is a bug with that name on windows.
+* When setting up TailwindCSS, could not name the `tailwind.config.js` file as `tailwind.js` there is a bug with that name on windows.
 
 ## TODO
 
