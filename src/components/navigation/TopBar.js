@@ -26,9 +26,9 @@ const TopBar = () => {
                 <div className={`w-full block flex-grow sm:flex sm:items-center sm:w-auto ${smallNavHidden}`}>
                     {/*Left Side Grows*/}
                     <div className="text-sm sm:flex-grow">
-                        <TopBarLink to="/" label="Home"/>
-                        <TopBarLink to="/public" label="Public"/>
-                        <TopBarLink to="/secure" label="Secure"/>
+                        <TopBarLink to="/" exact={true} label="Home"/>
+                        <TopBarLink to="/public" exact={true} label="Public"/>
+                        <TopBarLink to="/secure" exact={true} label="Secure"/>
                         {/*TODO: Less than ideal here for now.*/}
                         {userAuthenticated && (
                             <TopBarLink to="/logout" label="Log Out"/>

@@ -631,6 +631,30 @@ video {
   }
 }
 
+/* Styles for top-bar-link*/
+
+.top-bar-link {
+  display: block;
+  margin-top: 1rem;
+  color: #fff;
+  margin-left: 0.5rem;
+}
+
+.top-bar-link.active {
+  background-color: #2c7a7b;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+}
+
+@media (min-width: 640px) {
+  .top-bar-link {
+    display: inline-block;
+    margin-top: 0;
+  }
+}
+
+/* End of styles for .top-bar-link*/
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -54438,3 +54462,4 @@ video {
     z-index: auto;
   }
 }
+

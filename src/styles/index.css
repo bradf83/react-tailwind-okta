@@ -2,4 +2,23 @@
 
 @tailwind components;
 
+/* Styles for top-bar-link*/
+.top-bar-link {
+    @apply block mt-4 text-white ml-2;
+}
+
+.top-bar-link.active {
+    @apply bg-teal-700;
+    @apply rounded;
+    @apply p-1;
+}
+
+@screen sm {
+    .top-bar-link {
+        @apply inline-block mt-0;
+    }
+}
+/* End of styles for .top-bar-link*/
+
 @tailwind utilities;
+

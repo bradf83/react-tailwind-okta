@@ -14,4 +14,4 @@
 * Improve use of Tailwind, file a little big not sure we need everything
 * Cleanup TODOs about OKTA Pattern
 * Access or ID token?  Both?
-* Can I use TailwindCSS with node-sass?
+* Create custom styles files (components/utilities/base);
