@@ -1,6 +1,6 @@
 import React from 'react';
 
-// TODO: Not currently used
+// Not currently used
 const SideBar = ({showSideMenu}) => {
     const display = showSideMenu ? '' : 'hidden';
     return (

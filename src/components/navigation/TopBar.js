@@ -3,7 +3,7 @@ import {AuthContext} from "../authentication/Auth";
 import TopBarLink from "./TopBarLink";
 import Hamburger from "./Hamburger";
 import {Link, NavLink} from "react-router-dom";
-import Dropdown from "./Dropdown";
+import {Dropdown, DropdownLink} from "./Dropdown";
 
 const TopBar = () => {
     const [hidden, setHidden] = useState(true);
@@ -35,7 +35,7 @@ const TopBar = () => {
                     <div>
                         {userAuthenticated && (
                             <Dropdown userName={auth.user.name}>
-                                <NavLink to="/logout" className="block px-4 py-2 text-gray-800 hover:bg-teal-700 hover:text-white">Sign Out</NavLink>
+                                <DropdownLink to="/logout">Sign Out</DropdownLink>
                             </Dropdown>
                         )}
                         {!userAuthenticated && (

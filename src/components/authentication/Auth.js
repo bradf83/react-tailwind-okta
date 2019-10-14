@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
     });
 
     const updateAuth = async auth => {
-        //TODO: Should we be saving the accessToken and the idToken?
+        //Only getting the idToken, is that enough?  Do we want the access token as well?
         const token = (await auth.getIdToken()) || null;
 
         // Only update the token if it is different.  (Do not want to cause extra renders)

@@ -1,8 +1,8 @@
 import React, {useEffect, useRef, useState} from 'react';
+import {NavLink} from "react-router-dom";
 
-// TODO Create a DropdownLink and DropdownButton component
 // TODO: Extract custom hook or look for one to use that does this already.
-const Dropdown = ({userName, children}) => {
+export const Dropdown = ({userName, children}) => {
     const [open, setOpen] = useState(false);
     const node = useRef(null);
 
@@ -36,4 +36,5 @@ const Dropdown = ({userName, children}) => {
     )
 };
 
-export default Dropdown;
+export const DropdownLink = ({to, children}) =>
+    <NavLink to={to} className="block px-4 py-2 text-gray-800 hover:bg-teal-700 hover:text-white">{children}</NavLink>;

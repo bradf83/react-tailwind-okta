@@ -17,6 +17,6 @@ module.exports = {
     plugins: [
         tailwindcss('./tailwind.config.js'),
         require('autoprefixer'),
-        // purgecss TODO: Put this back as needed
+        // purgecss // Put back when needed
     ],
 };
