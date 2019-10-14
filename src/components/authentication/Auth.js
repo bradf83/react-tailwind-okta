@@ -16,6 +16,7 @@ export const AuthProvider = ({ children }) => {
     const updateAuth = async auth => {
         //TODO: I believe there is a bug here, something about user not logged in and not to prompt.
         // May need to catch error and set state to intiial?
+        // I believe the bug is when calling auth.getUser(), now checking to ensure we have a token before calling it.
         //Only getting the idToken, is that enough?  Do we want the access token as well?
         console.log('Before get ID');
         const token = (await auth.getIdToken()) || null;
@@ -26,7 +27,7 @@ export const AuthProvider = ({ children }) => {
             setState({
                 token,
                 loading: token === null, //No sure I like 'loading' maybe authenticated? Change to token !== null
-                user: await auth.getUser(),
+                user: token === null ? null : await auth.getUser(),
             });
             console.log('After Update Auth State');
         }
