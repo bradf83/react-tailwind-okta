@@ -1,33 +1,17 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 import {NavLink} from "react-router-dom";
+import {useClickOutside} from "../hooks/useClickOutside";
 
-// TODO: Extract custom hook or look for one to use that does this already.
 export const Dropdown = ({userName, children}) => {
     const [open, setOpen] = useState(false);
-    const node = useRef(null);
+    const wrapperNode = useRef(null);
 
-    const handleClickOutside = e => {
-        if (node.current.contains(e.target)) {
-            return;
-        }
-        setOpen(false);
-    };
-
-    useEffect(() => {
-        if (open) {
-            document.addEventListener("mousedown", handleClickOutside);
-        } else {
-            document.removeEventListener("mousedown", handleClickOutside);
-        }
-
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [open]);
+    const clickOutSideCallback = useCallback(() => setOpen(false), []);
+    useClickOutside(wrapperNode, clickOutSideCallback);
 
     const openClass = open ? '' : 'hidden';
     return (
-        <div className="relative" ref={node}>
+        <div className="relative" ref={wrapperNode}>
             <span className="block text-white cursor-pointer" onClick={() => setOpen(current => !current)}>{userName}</span>
             <div className={`absolute right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl ${openClass}`}>
                 {children}

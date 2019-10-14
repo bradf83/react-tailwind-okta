@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import {AuthContext} from "../authentication/Auth";
 import TopBarLink from "./TopBarLink";
 import Hamburger from "./Hamburger";
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {Dropdown, DropdownLink} from "./Dropdown";
 
 const TopBar = () => {
