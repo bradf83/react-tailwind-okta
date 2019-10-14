@@ -11,9 +11,11 @@
 
 ## TODO
 
-* Improve use of Tailwind, file a little big not sure we need everything
-* Cleanup TODOs about OKTA Pattern
 * Access or ID token?  Both?
 * Create custom styles files (components/utilities/base);
 * Create a DropdownLink, DropdownButton, DropdownDivider
-* Dropdown should be something else when small
+* Dropdown should be something else when < 640px
+
+## Remember
+
+* Enable purgecss in postcss.config.js if we need tailwind.css to become only used classes rather than everything.

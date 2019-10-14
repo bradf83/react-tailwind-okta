@@ -2,7 +2,8 @@ import * as React from 'react';
 import {useLocation} from 'react-router-dom';
 import { withAuth } from '@okta/okta-react';
 
-//TODO: Is it ok to pass nothing here?
+// Not passing default state here as the AuthProvider is intended to wrap the entire application.  This means there
+// should be no consumer above this provider that would require the default state.
 export const AuthContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -37,7 +38,7 @@ export const AuthHandler = withAuth(({ auth }) => {
         const { updateAuth } = React.useContext(AuthContext);
         const location = useLocation();
 
-        //TODO: Reread useEffect hook and determine if this is ideal.
+        // This runs every single render.  updateAuth has logic to ignore state updates.
         React.useEffect(() => {
             updateAuth(auth);
         });
