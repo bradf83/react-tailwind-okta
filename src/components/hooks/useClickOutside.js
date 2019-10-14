@@ -8,7 +8,6 @@ import {useEffect} from 'react';
  */
 export const useClickOutside = (ref, callback) => {
     useEffect(() => {
-        console.log('outside');
         const handleClickOutside = e => {
             // Do nothing if clicking ref element or it's children
             if (!ref.current || ref.current.contains(e.target)) {

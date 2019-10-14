@@ -14,7 +14,7 @@ const Secure = () => {
                 Welcome <em>{auth.user.name}</em>
             </h1>
 
-            <div className="bg-blue-200 rounded py-2 px-2">
+            <div className="bg-blue-200 rounded py-2 px-2 mb-2">
                 <p>Welcome to your dashboard. <em>More Coming soon!</em></p>
             </div>
         </MainContentContainer>

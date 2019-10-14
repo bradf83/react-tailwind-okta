@@ -9,21 +9,26 @@ export const AuthContext = React.createContext();
 export const AuthProvider = ({ children }) => {
     const [state, setState] = React.useState({
         loading: true,
-        token: undefined,
+        token: undefined, // Should this be null instead?
         user: null,
     });
 
     const updateAuth = async auth => {
+        //TODO: I believe there is a bug here, something about user not logged in and not to prompt.
+        // May need to catch error and set state to intiial?
         //Only getting the idToken, is that enough?  Do we want the access token as well?
+        console.log('Before get ID');
         const token = (await auth.getIdToken()) || null;
-
+        console.log('After get ID', state.token, token);
         // Only update the token if it is different.  (Do not want to cause extra renders)
         if (token !== state.token) {
+            console.log('Before Update Auth State');
             setState({
                 token,
                 loading: token === null, //No sure I like 'loading' maybe authenticated? Change to token !== null
                 user: await auth.getUser(),
             });
+            console.log('After Update Auth State');
         }
     };
 
