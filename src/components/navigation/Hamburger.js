@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * A hamburger icon, taken from the TailwindCSS docs.
+ * @param clickHandler what to do when this hamburger menu is clicked.
+ */
 const Hamburger = ({clickHandler}) => {
     return (
         <button
