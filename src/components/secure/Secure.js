@@ -8,7 +8,17 @@ const Secure = () => {
         return <Loading/>
     }
     return (
-        <div>Welcome to the secure area: {auth.user.name}</div>
+        <section className="mt-2">
+            <div className="container mx-auto">
+                <h1 className="font-bold text-xl mb-2">
+                    Welcome <em>{auth.user.name}</em>
+                </h1>
+
+                <div className="bg-blue-200 rounded py-2 px-2">
+                    <p>Welcome to your dashboard. <em>More Coming soon!</em></p>
+                </div>
+            </div>
+        </section>
     )
 };
 

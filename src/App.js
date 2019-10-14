@@ -16,7 +16,7 @@ function App() {
                     <Security {...oktaConfig}>
                         <Navigation/>
                         <Switch>
-                            <Route path={"/public"}>
+                            <Route exact={true} path={"/"}>
                                 <Public/>
                             </Route>
                             <SecureRoute path={"/secure"} component={Secure}/>
