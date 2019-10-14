@@ -1,15 +1,35 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
-// TODO Enhance this so that if you click outside the drop down it closes.
-//  Create a DropdownLink and DropdownButton component
+// TODO Create a DropdownLink and DropdownButton component
+// TODO: Extract custom hook or look for one to use that does this already.
 const Dropdown = ({userName, children}) => {
-    const [collapsed, setCollapsed] = useState(true);
+    const [open, setOpen] = useState(false);
+    const node = useRef(null);
 
-    const isCollapsed = collapsed ? 'hidden' : '';
+    const handleClickOutside = e => {
+        if (node.current.contains(e.target)) {
+            return;
+        }
+        setOpen(false);
+    };
+
+    useEffect(() => {
+        if (open) {
+            document.addEventListener("mousedown", handleClickOutside);
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [open]);
+
+    const openClass = open ? '' : 'hidden';
     return (
-        <div className="relative">
-            <span className="block text-white cursor-pointer" onClick={() => setCollapsed(current => !current)}>{userName}</span>
-            <div className={`absolute right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl ${isCollapsed}`}>
+        <div className="relative" ref={node}>
+            <span className="block text-white cursor-pointer" onClick={() => setOpen(current => !current)}>{userName}</span>
+            <div className={`absolute right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl ${openClass}`}>
                 {children}
             </div>
         </div>
