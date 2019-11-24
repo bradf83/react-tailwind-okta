@@ -18,18 +18,18 @@ export const AuthProvider = ({ children }) => {
         // May need to catch error and set state to intiial?
         // I believe the bug is when calling auth.getUser(), now checking to ensure we have a token before calling it.
         //Only getting the idToken, is that enough?  Do we want the access token as well?
-        console.log('Before get ID');
+        // console.log('Before get ID');
         const token = (await auth.getIdToken()) || null;
-        console.log('After get ID', state.token, token);
+        // console.log('After get ID', state.token, token);
         // Only update the token if it is different.  (Do not want to cause extra renders)
         if (token !== state.token) {
-            console.log('Before Update Auth State');
+            // console.log('Before Update Auth State');
             setState({
                 token,
                 loading: token === null, //No sure I like 'loading' maybe authenticated? Change to token !== null
                 user: token === null ? null : await auth.getUser(),
             });
-            console.log('After Update Auth State');
+            // console.log('After Update Auth State');
         }
     };
 
