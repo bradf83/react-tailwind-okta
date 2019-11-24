@@ -6,6 +6,7 @@ import {AuthHandler, AuthProvider} from "./components/authentication/Auth";
 import Navigation from "./components/navigation/Navigation";
 import Public from "./components/public/Public";
 import Secure from "./components/secure/Secure";
+import Nutrition from "./components/nutrition/Nutrition";
 
 const oktaConfig = { ...config.auth, redirect_uri: window.location.origin + '/implicit/callback'};
 
@@ -20,6 +21,9 @@ function App() {
                                 <Public/>
                             </Route>
                             <SecureRoute path={"/secure"} component={Secure}/>
+                            <Route path={"/nutrition"}>
+                                <Nutrition />
+                            </Route>
                             <Route path='/implicit/callback' component={ImplicitCallback}/>
                         </Switch>
                         <AuthHandler/>

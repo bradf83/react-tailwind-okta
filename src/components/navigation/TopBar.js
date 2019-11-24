@@ -30,6 +30,7 @@ const TopBar = () => {
                     <div className="text-sm sm:flex-grow">
                         <TopBarLink to="/" exact={true} label="Public"/>
                         <TopBarLink to="/secure" exact={true} label="Secure"/>
+                        <TopBarLink to="/nutrition" exact={true} label="Nutrition"/>
                     </div>
                     {/*Right Side only takes space it needs*/}
                     <div>
