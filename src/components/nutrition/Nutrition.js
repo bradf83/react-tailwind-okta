@@ -12,9 +12,30 @@ import MainContentContainer from "../layout/MainContentContainer";
 // New Ingredient Structure
 // {id: 1, name: "Carrots", servingSize: "1 Cup", protein: 0, carbs: 0, fat: 0, calories: 0}
 // Recipe Structure
-// {id: 1, name: "Recipe One"}
+// {id: 1, name: "Recipe One", numberOfServings: 2}
 // Recipe Ingredients Structure
 // {{id: 1, recipeId: 1, ingredientId: 1, numberOfServings: 2.5}]
+
+// Functionality List
+// Create Ingredient
+// Edit Ingredient
+// Delete Ingredient
+// Create Recipe
+// Edit Recipe
+// Delete Recipe
+// See Nutrition for Recipe (per serving)
+
+// Next
+// Create a menu
+// Total Ingredients for menu
+// Recipes that share ingredients
+// Add cost for ingredients by
+// Store Structure
+// {id: 1, name: "Costco"}
+// Buy Source Structure
+// {id: 1, ingredientId: 1, storeId: 1, cost: 7.99, packageSize: 200g}
+// Determine cost/g
+
 
 const ingredients = [
     {
