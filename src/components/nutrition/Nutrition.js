@@ -128,7 +128,7 @@ const Nutrition = () => {
             <div className="flex">
                 <div className="w-2/3 m-1">
                     <CustomSelect autoFocus={true}
-                                  changeHandler={(event) => dispatch(changeIngredient(event.target.value))}
+                                  onChange={(event) => dispatch(changeIngredient(event.target.value))}
                                   value={state.selectedIngredientId}
                     title="Please select an ingredient">
                         <option value>Select Ingredient</option>
@@ -140,7 +140,7 @@ const Nutrition = () => {
                         Please select an ingredient
                     </div>
                     {/*TODO: Change size to measurement throughout*/}
-                    <CustomSelect changeHandler={(event) => dispatch(changeIngredientSize(event.target.value))}
+                    <CustomSelect onChange={(event) => dispatch(changeIngredientSize(event.target.value))}
                                   value={state.selectedIngredientSizeId}>
                         <option value>Select Measurement</option>
                         {state.selectedIngredient && state.selectedIngredient.sizes.map(current =>
@@ -165,7 +165,7 @@ const Nutrition = () => {
             <hr className="m-2" />
             <h1 className="font-bold mb-2">Please select a recipe:</h1>
 
-            <CustomSelect changeHandler={(event) => dispatch(changeRecipe(event.target.value))}
+            <CustomSelect onChange={(event) => dispatch(changeRecipe(event.target.value))}
                           value={state.selectedRecipeId}>
                 <option value>Select Recipe</option>
                 {recipes.map(current =>
@@ -203,13 +203,23 @@ const RecipeItem = ({item}) => {
   )
 };
 
-const CustomSelect = ({changeHandler = () => {}, value = '', children, autoFocus = false, title = ''}) => {
+const CustomSelect = ({onChange = () => {}, value = '', children, autoFocus = false, title = ''}) => {
     return (
-        <select autoFocus={autoFocus} onChange={changeHandler} value={value} title={title}
+        <select autoFocus={autoFocus} onChange={onChange} value={value} title={title}
                 className={"appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"}>
             {children}
         </select>
     )
 };
+
+// This version works but no longer allows us to give defaults
+// const CustomSelect = ({children, ...rest}) => {
+//     return (
+//         <select {...rest}
+//                 className={"appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"}>
+//             {children}
+//         </select>
+//     )
+// };
 
 export default Nutrition;
