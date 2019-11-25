@@ -213,6 +213,7 @@ const CustomSelect = ({onChange = () => {}, value = '', children, autoFocus = fa
 };
 
 // This version works but no longer allows us to give defaults (method below not working
+// Rest parameters can not have a default, decent stack overflow about it: https://stackoverflow.com/questions/42650594/is-it-possible-to-set-default-parameter-value-on-a-rest-parameter
 // const CustomSelect2 = ({children, ...rest} = {children: undefined, onChange: () => {}, autoFocus: false, title: '', value: ''}) => {
 //     return (
 //         <select {...rest}
