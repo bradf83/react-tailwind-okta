@@ -29,13 +29,14 @@ const recipes = [
             {id: 1, amount: 1, ingredientId: 2}
         ]
     }
-]
+];
 
 const reducer = (state, action) => {
     switch(action.type){
         case "CHANGE_INGREDIENT":
             return {...state, selectedIngredientId: action.selectedIngredientId,
-                selectedIngredient: ingredients.find(ing => ing.id === Number(action.selectedIngredientId))};
+                selectedIngredient: ingredients.find(ing => ing.id === Number(action.selectedIngredientId)),
+                selectedIngredientSize: undefined, selectedIngredientSizeId: ''};
         case "CHANGE_INGREDIENT_SIZE":
 
             let selectedIngredientSize = undefined;
@@ -44,7 +45,9 @@ const reducer = (state, action) => {
             }
 
             return {...state, selectedIngredientSizeId: action.selectedIngredientSizeId,
-                selectedIngredientSize};
+                selectedIngredientSize: selectedIngredientSize};
+        case "CHANGE_RECIPE":
+            return {...state, selectedRecipeId: action.selectedRecipeId, selectedRecipe: recipes.find(current => current.id === Number(action.selectedRecipeId))};
         default:
             return state;
     }
@@ -54,6 +57,13 @@ const changeIngredient = (ingredientId) => {
     return {
         type: 'CHANGE_INGREDIENT',
         selectedIngredientId: ingredientId
+    }
+};
+
+const changeRecipe = (recipeId) => {
+    return {
+        type: 'CHANGE_RECIPE',
+        selectedRecipeId: recipeId
     }
 };
 
@@ -68,10 +78,6 @@ const Nutrition = () => {
     const [state, dispatch] = useReducer(reducer,
         {selectedIngredientId: '', selectedIngredientSizeId: '', selectedIngredient: undefined});
 
-    useEffect(() => {
-        dispatch(changeIngredientSize(''));
-    }, [state.selectedIngredientId]);
-
     return (
         <MainContentContainer>
             <h1 className="font-bold text-xl mb-2">
@@ -80,20 +86,18 @@ const Nutrition = () => {
             <div className="flex">
                 <div className="w-2/3 border border-black rounded m-1 p-1">
                     <h1 className="font-bold mb-2">Ingredient Selector</h1>
-                    <select onChange={(event) => dispatch(changeIngredient(event.target.value))} value={state.selectedIngredientId}
-                        className={"appearance-none w-full mb-2 bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"}>
+                    <CustomSelect autoFocus={true} changeHandler={(event) => dispatch(changeIngredient(event.target.value))} value={state.selectedIngredientId}>
                         <option value>Select Ingredient</option>
                         {ingredients.map(current =>
                             <option key={current.id} value={current.id}>{current.name}</option>
                         )}
-                    </select>
-                    <select onChange={(event) => dispatch(changeIngredientSize(event.target.value))} value={state.selectedIngredientSizeId}
-                     className={"appearance-none w-full mb-2 bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"}>
+                    </CustomSelect>
+                    <CustomSelect changeHandler={(event) => dispatch(changeIngredientSize(event.target.value))} value={state.selectedIngredientSizeId}>
                         <option value>Select Size</option>
                         {state.selectedIngredient && state.selectedIngredient.sizes.map(current =>
                             <option key={current.id} value={current.id}>{`${current.amount} ${current.uom}`}</option>
                         )}
-                    </select>
+                    </CustomSelect>
                 </div>
                 <div className="w-1/3 border border-black rounded m-1 p-1">
 
@@ -108,8 +112,27 @@ const Nutrition = () => {
                     )}
                 </div>
             </div>
+
+            <h1 className="font-bold mb-2">Recipe Selector</h1>
+
+            <CustomSelect changeHandler={(event) => dispatch(changeRecipe(event.target.value))} value={state.selectedRecipeId}>
+                <option value>Select Recipe</option>
+                {recipes.map(current =>
+                    <option key={current.id} value={current.id}>{current.name}</option>
+                )}
+            </CustomSelect>
+
         </MainContentContainer>
     )
 };
+
+const CustomSelect = ({changeHandler = () => {}, value = '', children, autoFocus = false}) => {
+    return (
+        <select autoFocus={autoFocus} onChange={changeHandler} value={value}
+                className={"appearance-none w-full mb-2 bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"}>
+            {children}
+        </select>
+    )
+}
 
 export default Nutrition;
